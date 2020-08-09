@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<head>
+    <title></title>
+
+</head>
+<body>
+    <h3 id="head">Выберите один из вариантов:</h3>
+    <div class="inputs">
+        <input type="radio" name="radio" id="stone"><label for="stone">Камень</label>
+        <input type="radio" name="radio" id="scissors"><label for="scissors">Ножницы</label>
+        <input type="radio" name="radio" id="paper"><label for="paper">Бумага</label>
+    </div>
+    <div class="button1">
+        <button id="button" style="width:400px;height:100px">Вперёд!</button>
+    </div>
+    <div class="out" id="out"></div>
+
+
+    <style type="text/css">
+        h3 {
+            text-align: center;
+        }
+        .inputs {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        input {
+            margin-left: 25px;
+
+        }
+        .button1 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            z-index: 99;
+        }
+        .out {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            justify-content: center;
+            margin-top: 30px;
+            font-size: 30px;
+        }
+    </style>
+
+
+
+
+
+    <script type="text/javascript">
+
+            let random = function () {
+                computerChoice = Math.random();
+                if (computerChoice <= 0.34) {
+                    computerChoice = "камень";
+                } else if (computerChoice <= 0.67) {
+                    computerChoice = "бумага";
+                } else {
+                    computerChoice = "ножницы";
+                }
+            }
+            random();
+
+        var head = document.getElementById('head');
+        var stone = document.getElementById('stone');
+        var scissors = document.getElementById('scissors');
+        var paper = document.getElementById('paper');
+        var button = document.getElementById('button');
+        var userChoise;
+        var out = document.getElementById('out');
+
+
+        button.onclick = function one () {
+            if (stone.checked) {
+                userChoise = 'камень';
+            } else if (scissors.checked) {
+                userChoise = 'ножницы';
+            } else if (paper.checked) {
+                userChoise = 'бумага';
+            } else {
+                head.innerHTML = 'Сделайте выбор!';
+                one();
+            }
+
+
+            if (userChoise == computerChoice) {
+                out.innerHTML = "Компьютер выбрал: " + computerChoice + " Ничья!!!";
+            } else if (((userChoise == 'камень') && (computerChoice == 'бумага')) || ((userChoise == 'ножницы') && (computerChoice == 'камень')) || ((userChoise == 'бумага') && (computerChoice == 'ножницы'))) {
+                out.innerHTML = "Компьютер выбрал: " + computerChoice + ", ты проиграл!!!";
+            } else {
+                out.innerHTML = "Компьютер выбрал: " + computerChoice + ", ты победил!!!";
+            }
+            random();
+        }
+
+    </script>
+</body>
+</html>
